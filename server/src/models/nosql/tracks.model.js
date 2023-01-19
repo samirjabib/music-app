@@ -45,4 +45,4 @@ const TracksScheme = new mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model("users", TracksScheme)
+module.exports = mongoose.model("tracks", TracksScheme)

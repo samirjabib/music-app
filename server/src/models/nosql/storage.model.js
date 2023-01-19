@@ -6,12 +6,8 @@ const StorageScheme = new mongoose.Schema(
             type:String,
         },
         filename:{
-            type:Number
+            type:String,
         },
-        role:{
-            type:["user", "admin"],
-            default:"user",
-        }
     },
     {
         timestamps:true, // create date, update date
