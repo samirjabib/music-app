@@ -2,11 +2,13 @@ const multer = require("multer")
 
 const storage = multer.diskStorage({
     destination:function(req, file, cb){
-        const pathStorage = `${__dirname}/../../storage` //Le indicamos la ruta donde guardaremos los archivos
+        const pathStorage = `${__dirname}/../storage` //Le indicamos la ruta donde guardaremos los archivos
+        console.log(pathStorage)
 
         cb(null, pathStorage)
     },
     filename:function(req, file, cb){
+        console.log(file)
         const ext = file.originalname.split(".").pop() //Separamos el array por el . y agarramos el valor final
         const filename = `file${Date.now()}.${ext}` //Generamos un nombre random
         cb(null, filename)
