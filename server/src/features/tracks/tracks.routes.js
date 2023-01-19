@@ -15,8 +15,8 @@ const {
 
 const tracksRouter = express.Router();
 
-tracksRouter.get("/", validatorCreateTracks, getItems)
-tracksRouter.post("/", postItems)
+tracksRouter.get("/",  getItems)
+tracksRouter.post("/", validatorCreateTracks , postItems)
 
 
 
