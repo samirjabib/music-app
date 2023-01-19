@@ -1,4 +1,6 @@
 const express = require("express")
+;
+const { validatorCreateTracks } = require("./middlewares/tracks.validators");
 
 const {
     getItems,
@@ -10,9 +12,10 @@ const {
 
 
 
+
 const tracksRouter = express.Router();
 
-tracksRouter.get("/", getItems)
+tracksRouter.get("/", validatorCreateTracks, getItems)
 tracksRouter.post("/", postItems)
 
 
