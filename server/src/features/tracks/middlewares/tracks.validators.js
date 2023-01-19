@@ -1,4 +1,5 @@
 const { check } = require("express-validator");
+const { validateResults } = require("../../../utils/hadleValidator");
 
 
 const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
@@ -32,7 +33,7 @@ const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
     check("mediaId")
     .exists()
     .notEmpty(),
-    //Retornamos el objeto request para el siguiente middleware
+    //Enviamos el objeto req mediante callback hacia la funcion. y retornamos su valor.
     (req, res, next) => {
         return validateResults(req, res, next)
     }
