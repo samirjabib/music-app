@@ -4,6 +4,7 @@ const cors = require("cors") //Cors nos permite evitar el error de origen cruzad
 
 const { dbConnect } = require('./config/mongo')
 const { router } = require('./router/router')
+const { globalErroHandler } = require("./utils/globalErrorHandler")
 
 
 const app = express()
@@ -20,3 +21,6 @@ app.listen(port, () => {
 })
 
 dbConnect()
+
+
+app.use( "*" , globalErroHandler) //Activamos el manejador de errores global 
