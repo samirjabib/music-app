@@ -7,8 +7,8 @@ const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
         .exists()
         .notEmpty(),
     check("album")
-    .exists()
-    .notEmpty(),
+        .exists()
+        .notEmpty(),
     check("cover")
         .exists()
         .notEmpty(),
@@ -31,8 +31,8 @@ const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
         .exists()
         .notEmpty(),
     check("mediaId")
-    .exists()
-    .notEmpty(),
+        .exists()
+        .notEmpty(),
     //Enviamos el objeto req mediante callback hacia la funcion. y retornamos su valor.
     (req, res, next) => {
         return validateResults(req, res, next)

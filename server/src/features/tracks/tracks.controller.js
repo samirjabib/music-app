@@ -27,13 +27,14 @@ const getTrack = async (req, res, next) => {
 }
 
 const createTrack = async (req, res, next) => {
-    try {
-        const body = matchedData(req)
 
+    try {
+        const { body } = req
         const response = await tracksServices.postItems(body) 
         res.status(StatusCodes.CREATED).json(response)
     } catch (error) {
         next(error)
+        console.log(error)
     }
 }
 

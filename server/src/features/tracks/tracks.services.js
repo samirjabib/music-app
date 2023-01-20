@@ -14,6 +14,8 @@ const getItem = async(id) => {
 }
 
 const postItems = async(body) => {
+    console.log(body)
+
     const data = await tracksModel.create(body)
 
     return data
