@@ -1,7 +1,10 @@
 const { StatusCodes } = require("http-status-codes")
+const  { matchedData } = require("express-validator")
+
 const tracksServices = require("./tracks.services")
 
-const getItems = async (req,res) => {
+
+const getTracks = async (req, res, next) => {
     try {
         const response = await tracksServices.getItems()
         res.status(StatusCodes.OK).json(response)
@@ -11,11 +14,11 @@ const getItems = async (req,res) => {
     }
 }
 
-const getItem = (req,res) => {
-    const { id } = req.params
-
+const getTrack = async (req, res, next) => {
     try {
-        const response = tracksServices.getItem(id);
+        const { id } = matchedData(req)
+
+        const response = await tracksServices.getItem(id);
         res.status(StatusCodes.OK).json(response)
 
     } catch (error) {
@@ -23,32 +26,55 @@ const getItem = (req,res) => {
     }
 }
 
-const postItems = async (req,res) => {
-    const { body } = req
-
+const createTrack = async (req, res, next) => {
     try {
-        const data = await tracksServices.postItems(body) 
-        res.send({data})   
+        const body = matchedData(req)
+
+        const response = await tracksServices.postItems(body) 
+        res.status(StatusCodes.CREATED).json(response)
     } catch (error) {
-        res.send(error)
+        next(error)
     }
 }
 
-const updateItems = (req,res) => {
+const updateTrack = async (req,res, next) => {
+    try {
+        const {id } = matchedData(req);
+        const { body} = req;
+        console.log
 
+        const response = await tracksServices.updateItem(id, body)
+
+        const error = response.stack
+        
+        if(error){
+            next(response)
+        }
+
+        res.status(StatusCodes.NO_CONTENT).json(response)
+    } catch (error) {
+        next(error)
+    }
 }
 
-const deleteItems = (req,res) => {
+const deleteTrack = async (req,res, next) => {
+    try {
+        const {id, ...body} = matchedData(req);
 
+        const response = await tracksServices.deleteTrack()
+        res.status(StatusCodes.ACCEPTED).json(response)
+    } catch (error) {
+        next(error)
+    }
 }
 
 
 
 
 module.exports = {
-    getItems,
-    getItem,
-    postItems,
-    updateItems,
-    deleteItems
+    createTrack,
+    deleteTrack,
+    getTrack,
+    getTracks,
+    updateTrack,
 }

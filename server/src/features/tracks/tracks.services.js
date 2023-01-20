@@ -14,9 +14,18 @@ const getItem = async(id) => {
 }
 
 const postItems = async(body) => {
+    const data = await tracksModel.create(body)
 
+    return data
+}
 
-    return body
+const updateItem = async(id, body) => {
+    const data = await tracksModel.findOneAndUpdate(id, body,{ 
+        new:true
+    })
+    console.log(data)
+
+    return data
 }
 
 
@@ -24,4 +33,5 @@ module.exports = {
     getItems,
     getItem,
     postItems,
+    updateItem,
 }

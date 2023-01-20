@@ -1,13 +1,18 @@
 const express = require("express")
 ;
-const { validatorCreateTracks , validatorGetTrack } = require("./middlewares/tracks.validators");
+const { 
+    validatorCreateTracks, 
+    validatorGetTrack,
+    validatorUpdateTrack
+} = require("./middlewares/tracks.validators");
 
 const {
-    getItems,
-    getItem,
-    postItems,
-    updateItems,
-    deleteItems
+    createTrack,
+    deleteTrack,
+    getTrack,
+    getTracks,
+    updateTrack,
+    
 } = require("./tracks.controller");
 
 
@@ -15,11 +20,11 @@ const {
 
 const tracksRouter = express.Router();
 
-tracksRouter.get("/", getItems)
-tracksRouter.post("/", validatorCreateTracks , postItems)
-tracksRouter.get("/:id" ,validatorGetTrack)
-tracksRouter.put("/:id")
-tracksRouter.delete("/:id")
+tracksRouter.get("/", getTracks)
+tracksRouter.post("/", validatorCreateTracks , createTrack)
+tracksRouter.get("/:id" ,validatorGetTrack , getTrack)
+tracksRouter.patch("/:id", validatorUpdateTrack, updateTrack)
+tracksRouter.delete("/:id", deleteTrack)
 
 
 
