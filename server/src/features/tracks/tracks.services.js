@@ -1,7 +1,10 @@
+const { tracksModel } = require('../../models')
 
 
-const getItems = async(body) => {
+const getItems = async() => {
+    const data = await tracksModel.find()
 
+    return data
 }
 
 const getItem = async(body) => {
@@ -16,6 +19,7 @@ const postItems = async(body) => {
 
 
 module.exports = {
-    getItems, 
-    postItems
+    getItems,
+    getItem,
+    postItems,
 }

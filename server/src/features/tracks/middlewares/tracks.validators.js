@@ -40,7 +40,7 @@ const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
 ];
 
 
-const validatorGetItem = [
+const validatorGetTrack = [
     check("id")
     .exists()
     .notEmpty(),
@@ -97,6 +97,6 @@ const validatorUpdateItem = [
 
 module.exports = { 
     validatorCreateTracks, 
-    validatorGetItem, 
+    validatorGetTrack, 
     validatorUpdateItem 
 }

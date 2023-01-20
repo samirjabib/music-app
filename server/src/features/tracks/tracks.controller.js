@@ -1,9 +1,14 @@
-const tracksServices = require('./tracks.services')
-
+const { StatusCodes } = require("http-status-codes")
+const tracksServices = require("./tracks.services")
 
 const getItems = async (req,res) => {
-    
- 
+    try {
+        const response = await tracksServices.getItems()
+        res.status(StatusCodes.OK).json(response)
+        
+    } catch (error) {
+        next(error)
+    }
 }
 
 const getItem = (req,res) => {
