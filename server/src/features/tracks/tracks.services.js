@@ -32,10 +32,10 @@ const updateItem = async(id, body) => {
 
 const deleteItem = async(id) => {
 
-    const deleteResponse = await tracksModel.deleteMany({_id:id});
+    const deleteResponse = await tracksModel.delete({_id:id});
 
     const data = {
-        deleted: deleteResponse.matchedCount
+        deleted: deleteResponse.matchedCount   
     }
 
     return data

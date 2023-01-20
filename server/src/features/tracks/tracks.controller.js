@@ -64,7 +64,7 @@ const deleteTrack = async (req,res, next) => {
         console.log(id)
 
         const response = await tracksServices.deleteItem()
-        res.status(StatusCodes.ACCEPTED).json(response)
+        res.status(StatusCodes.NO_CONTENT).json(response)
     } catch (error) {
         next(error)
     }
