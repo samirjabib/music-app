@@ -32,10 +32,15 @@ const updateItem = async(id, body) => {
 
 const deleteItem = async(id) => {
 
-    const deleteResponse = await tracksModel.delete({_id:id});
+    const deleteResponse = await tracksModel.deleteOne({_id:id})  //full deleted
+    // const deleteResponse = await tracksModel.delete({_id:id}) //soft deleted
+
+    
+
+    //TODO HACER SOFT DELETE
 
     const data = {
-        deleted: deleteResponse.matchedCount   
+        deleted: deleteResponse.deletedCount
     }
 
     return data
