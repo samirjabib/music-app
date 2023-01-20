@@ -60,9 +60,10 @@ const updateTrack = async (req,res, next) => {
 
 const deleteTrack = async (req,res, next) => {
     try {
-        const {id, ...body} = matchedData(req);
+        const { id } = matchedData(req);
+        console.log(id)
 
-        const response = await tracksServices.deleteTrack()
+        const response = await tracksServices.deleteItem()
         res.status(StatusCodes.ACCEPTED).json(response)
     } catch (error) {
         next(error)

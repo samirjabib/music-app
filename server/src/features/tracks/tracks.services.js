@@ -30,10 +30,22 @@ const updateItem = async(id, body) => {
     return data
 }
 
+const deleteItem = async(id) => {
+
+    const deleteResponse = await tracksModel.deleteMany({_id:id});
+
+    const data = {
+        deleted: deleteResponse.matchedCount
+    }
+
+    return data
+}
+
 
 module.exports = {
     getItems,
     getItem,
     postItems,
     updateItem,
+    deleteItem
 }

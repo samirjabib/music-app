@@ -24,10 +24,7 @@ tracksRouter.get("/", getTracks)
 tracksRouter.post("/", validatorCreateTracks , createTrack)
 tracksRouter.get("/:id" ,validatorGetTrack , getTrack)
 tracksRouter.patch("/:id", validatorUpdateTrack, updateTrack)
-tracksRouter.delete("/:id", deleteTrack)
-
-
-
+tracksRouter.delete("/:id",validatorGetTrack, deleteTrack)
 
 
 module.exports = { tracksRouter }
