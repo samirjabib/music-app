@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const { validateResults } = require("../../../utils/hadleValidator");
+const { validateResults } = require("../../../utils/handleValidators");
 
 
 const validatorCreateTracks = [ //Pasamos por los validators nuestro objecto REQ
