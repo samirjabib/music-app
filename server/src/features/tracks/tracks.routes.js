@@ -17,6 +17,11 @@ const tracksRouter = express.Router();
 
 tracksRouter.get("/", getItems)
 tracksRouter.post("/", validatorCreateTracks , postItems)
+tracksRouter.get("/:id" ,validatorGetTrack)
+tracksRouter.put("/:id")
+tracksRouter.delete("/:id")
+
+
 
 
 

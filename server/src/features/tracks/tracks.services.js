@@ -7,8 +7,10 @@ const getItems = async() => {
     return data
 }
 
-const getItem = async(body) => {
+const getItem = async(id) => {
+    const data = await tracksModel.findById(id)
 
+    return data
 }
 
 const postItems = async(body) => {
