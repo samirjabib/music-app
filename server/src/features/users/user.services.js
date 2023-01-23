@@ -1,7 +1,7 @@
 const { userModel } = require("../../models")
 const usersModel = require("../../models/nosql/users.model")
 const { tokenSign } = require("../../utils/handleJwt")
-const { encrypt } = require("../../utils/handlePassword")
+const { encrypt, compare } = require("../../utils/handlePassword")
 
 
 const createUser = async(body) => {
@@ -33,8 +33,32 @@ const getUsers = async() => {
 
 
 const login = async({email, password}) => {
+    
+    const data = userModel.findOne({
+        email,
+    })
 
-    const data = findOne
+    if(!data){
+        return console.log('dont exists this user')
+    }
+
+    const hashPassword = data.get("password");
+
+    const check = await compare(password, hashPassword)
+
+    if(!check){
+        return console.log('invalid password')
+    }
+
+    data.set("password", undefined, { strict: false });
+
+    const userData = {
+        token: await tokenSign(data),
+        data
+    }
+
+    return userData
+
 }
 
 
