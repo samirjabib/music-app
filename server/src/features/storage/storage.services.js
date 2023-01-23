@@ -1,7 +1,7 @@
 const { storageModel } = require("../../models")
 
 
-const postItems = async(body) => {
+const createFile = async(body) => {
 
     const data = await storageModel.create(body)
     console.log(data)
@@ -12,5 +12,5 @@ const postItems = async(body) => {
 
 
 module.exports = {
-    postItems
+    createFile
 }
