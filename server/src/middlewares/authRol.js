@@ -12,6 +12,9 @@ const checkRol = (roles) => (req, res, next) => {
     } catch (error) {
         next(error)
     }
+}
 
-    next()
+
+module.exports = {
+    checkRol
 }

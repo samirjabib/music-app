@@ -2,6 +2,7 @@ const express = require("express")
 
 
 const { authMiddleware } = require("../../middlewares/authLogin");
+const { checkRol } = require("../../middlewares/authRol");
 
 const { 
     validatorCreateTracks, 
@@ -25,7 +26,7 @@ const {
 const tracksRouter = express.Router();
 
 tracksRouter.get("/", authMiddleware, getTracks)
-tracksRouter.post("/", validatorCreateTracks , createTrack)
+tracksRouter.post("/", validatorCreateTracks ,authMiddleware, checkRol, createTrack)
 tracksRouter.get("/:id" ,validatorGetTrack , getTrack)
 tracksRouter.patch("/:id", validatorUpdateTrack, updateTrack)
 tracksRouter.delete("/:id",validatorGetTrack, deleteTrack)
