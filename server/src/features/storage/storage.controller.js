@@ -1,3 +1,4 @@
+const { matchedData } = require("express-validator")
 const { StatusCodes } = require("http-status-codes")
 
 
@@ -30,9 +31,32 @@ const getFiles = (req, res) => {
     }
 }
 
+const getFile = (req, res) => {
+    const id = req.params
+
+    try {
+        const data = storageServices.getFile(id)
+        res.status(StatusCodes.OK).json({data})
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteFile = (req, res) => {
+    const id = req.params
+    try {
+        const data = storageServices.deleteFile(id)
+        res.status(StatusCodes.NO_CONTENT).json({data})
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 
 module.exports = {
     createFile,
-    getFiles
+    getFiles,
+    getFile,
+    deleteFile
 }
