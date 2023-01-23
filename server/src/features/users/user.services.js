@@ -34,15 +34,19 @@ const getUsers = async() => {
 
 const login = async({email, password}) => {
     
-    const data = userModel.findOne({
-        email,
+    const data = await usersModel.findOne({
+        email:email
     })
+
+    console.log(data)
+    const hashPassword = data.get("password");
 
     if(!data){
         return console.log('dont exists this user')
     }
 
-    const hashPassword = data.get("password");
+
+    console.log(hashPassword)
 
     const check = await compare(password, hashPassword)
 
