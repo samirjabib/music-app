@@ -7,7 +7,10 @@ const tracksServices = require("./tracks.services")
 const getTracks = async (req, res, next) => {
     try {
         const response = await tracksServices.getItems()
-        res.status(StatusCodes.OK).json(response)
+        res.status(StatusCodes.OK).json({
+            user: req.user,
+            response
+        })
 
     } catch (error) {
         next(error)
