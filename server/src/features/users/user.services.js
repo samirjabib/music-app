@@ -1,9 +1,17 @@
 const { userModel } = require("../../models")
+const { encrypt } = require("../../utils/handlePassword")
 
 
-const createUser = async(data) => {
+const createUser = async(body) => {
     
-    const data = await userModel.create(data)
+    const hashPassword = await encrypt(body.password)
+    const user = {
+        ...body,
+        password:hashPassword
+    }
+
+    const data = await userModel.create(user)
+    data.set("password", undefined, { strict:false});
 
     return data
 }
