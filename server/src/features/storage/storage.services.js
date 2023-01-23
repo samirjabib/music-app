@@ -1,32 +1,32 @@
 const { storageModel } = require("../../models")
-const fs = require("fs");
+
+const MEDIA_PATH = `${__dirname}/../storage`;
 
 
 
-const createFile = async(body) => {
+const createFile = async(dataFile) => {
 
-    const data = await storageModel.create(body)
-
+    const data = await storageModel.create(dataFile)
+    console.log(data)
     return data
 }
 
 const getFiles = async() => {
     const data = await storageModel.find()
-    console.log(data)
 
     return data
 }
 
 const getFile = async(id) => {
     const data = await storageModel.findById(id)
-    console.log(data)
 
     return data
 }
 
 const deleteFile = async(id) => {
     const dataFile = await storageModel.findById(id)
-    const deleteResponse = await storageModel.deleteMany({_id: id})
+    console.log(dataFile)
+    const deleteResponse = await storageModel.delete({_id: id})
     const { filename } = dataFile
     
     const filePath = `${MEDIA_PATH}/${filename}`
@@ -35,6 +35,7 @@ const deleteFile = async(id) => {
         filePath,
         deleted: deleteResponse.matchedCount,
     }
+
     return data
 }
 

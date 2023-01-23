@@ -8,15 +8,17 @@ const PUBLIC_URL=process.env.PUBLIC_URL
 
 const createFile = (req, res, next) => {
     const { file } = req
+    
 
     try {
         const fileData = {
-            fileName: file.filename,
+            filename: file.filename,
             url:`${PUBLIC_URL}/${file.filename}`
         }
+
     
         const data = storageServices.createFile(fileData)
-        res.status(StatusCodes.CREATED).json({data})
+        res.status(StatusCodes.CREATED).json(data)
     } catch (error) {
         next(error)
     }
@@ -40,16 +42,19 @@ const getFile = async(req, res, next) => {
         res.status(StatusCodes.OK).json({data})
     } catch (error) {
         next(error)
+        console.log(error)
     }
 }
 
-const deleteFile = (req, res, next) => {
-    const id = req.params
+const deleteFile = async(req, res, next) => {
+    const { id } = req.params
     try {
-        const data = storageServices.deleteFile(id)
+        const data = await storageServices.deleteFile(id)
+        console.log(data)
         res.status(StatusCodes.NO_CONTENT).json({data})
     } catch (error) {
         next(error)
+        console.log(error)
     }
 }
 

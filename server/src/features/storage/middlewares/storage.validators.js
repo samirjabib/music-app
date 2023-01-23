@@ -1,14 +1,15 @@
-const { check, validationResult } = require("express-validator")
+const { check } = require("express-validator")
+const { validateResults } = require("../../../utils/handleValidators")
 
 
-const validatorGetItem = [
+const validatorGetFile = [
     check("id")
         .exists()
         .notEmpty(),
         (req, res, next) => {
-            return validationResult(res, req, next)
+            return validateResults(res, req, next)
         }
 ]
 
 
-module.exports = { validatorGetItem }
+module.exports = { validatorGetFile }
