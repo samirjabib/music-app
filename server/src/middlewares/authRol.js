@@ -2,6 +2,7 @@ const checkRol = (roles) => (req, res, next) => {
     try {
         const { user } = req
         const rolesByUser = user.role
+        console.log(rolesByUser)
         const checkValueRol = roles.some((rolSingle) => rolesByUser.includes(rolSingle))
         if(!checkValueRol){
             return next(

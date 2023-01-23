@@ -10,8 +10,6 @@ const authMiddleware = async(req, res, next) => {
 
         const token = req.headers.authorization.split(' ').pop();
         const dataToken = await verifyToken(token);
-        console.log(dataToken)
-
         if(!dataToken._id){
             return next(new AppError("ERROR_ID_TOKEN", 401));
         }

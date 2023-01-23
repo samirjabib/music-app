@@ -26,7 +26,7 @@ const {
 const tracksRouter = express.Router();
 
 tracksRouter.get("/", authMiddleware, getTracks)
-tracksRouter.post("/", validatorCreateTracks ,authMiddleware, checkRol, createTrack)
+tracksRouter.post("/", validatorCreateTracks ,authMiddleware, checkRol(["user", "admin"]), createTrack)
 tracksRouter.get("/:id" ,validatorGetTrack , getTrack)
 tracksRouter.patch("/:id", validatorUpdateTrack, updateTrack)
 tracksRouter.delete("/:id",validatorGetTrack, deleteTrack)
