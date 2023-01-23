@@ -5,7 +5,7 @@ const userRouter = express.Router()
 
 
 userRouter.get("/", )
-userRouter.post("/")
+userRouter.post("/", createUser)
 
 userRouter.get("/:id")
 userRouter.put("/:id")
