@@ -1,4 +1,6 @@
 const { userModel } = require("../../models")
+const usersModel = require("../../models/nosql/users.model")
+const { tokenSign } = require("../../utils/handleJwt")
 const { encrypt } = require("../../utils/handlePassword")
 
 
@@ -11,36 +13,33 @@ const createUser = async(body) => {
     }
 
     const data = await userModel.create(user)
-    data.set("password", undefined, { strict:false});
+    data.set("password", undefined, { strict: false });
+
+    const dataUser = {
+        user:data,
+        token:await tokenSign(data)
+    }
+
+
+    return dataUser
+}
+
+
+const getUsers = async() => {
+    const data = await usersModel.find()
 
     return data
 }
 
 
-const getUsers = async() => {
-    
+const login = async({email, password}) => {
+
+    const data = findOne
 }
-
-
-
-const getUserById = async(id) => {
-    
-}
-
-const updateUser = async(id, body) => {
-    
-}
-
-const deleteUser = async(id) => {
-    
-}
-
 
 
 module.exports = {
     createUser,
     getUsers,
-    getUserById,
-    updateUser,
-    deleteUser
+    login,
 }
