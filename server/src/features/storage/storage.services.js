@@ -9,8 +9,15 @@ const createFile = async(body) => {
     return data
 }
 
+const getFiles = async() => {
+    const data = await storageModel.find()
+
+    return data
+}
+
 
 
 module.exports = {
-    createFile
+    createFile,
+    getFiles
 }

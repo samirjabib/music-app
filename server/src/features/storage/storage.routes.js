@@ -2,14 +2,14 @@ const express = require("express")
 const { uploadMiddleware } = require("../../utils/handleStorage")
 const { validatorGetItem } = require("./middlewares/storage.validators")
 
-const { createFile} = require('./storage.controller')
+const { createFile, getFiles } = require('./storage.controller')
 const storageRouter = express.Router()
 
 
-storageRouter.post("/", validatorGetItem ,uploadMiddleware.single("my-file") , createFile ) 
+storageRouter.post("/", uploadMiddleware.single("my-file") , createFile ) 
 
-storageRouter.get("/", )
-storageRouter.get("/:id")
+storageRouter.get("/",getFiles )
+storageRouter.get("/:id", validatorGetItem)
 storageRouter.delete("/:id")
 
 
