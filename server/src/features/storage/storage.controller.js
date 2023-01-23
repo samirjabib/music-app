@@ -6,43 +6,44 @@ const storageServices = require('./storage.services')
 const PUBLIC_URL=process.env.PUBLIC_URL
 
 
-const createFile = (req, res) => {
+const createFile = (req, res, next) => {
+    const { file } = req
+
     try {
-        const { file } = req
         const fileData = {
             fileName: file.filename,
             url:`${PUBLIC_URL}/${file.filename}`
         }
     
         const data = storageServices.createFile(fileData)
-        res.status(StatusCodes.CREATED).json({data});
+        res.status(StatusCodes.CREATED).json({data})
     } catch (error) {
         next(error)
     }
 
 }
 
-const getFiles = (req, res) => {
+const getFiles = async (req, res, next) => {
     try {
-        const data = storageServices.getFiles()
+        const data = await storageServices.getFiles()
         res.status(StatusCodes.OK).json({data})
     } catch (error) {
         next(error)
     }
 }
 
-const getFile = (req, res) => {
-    const id = req.params
+const getFile = async(req, res, next) => {
+    const { id } = req.params
 
     try {
-        const data = storageServices.getFile(id)
+        const data = await storageServices.getFile(id)
         res.status(StatusCodes.OK).json({data})
     } catch (error) {
         next(error)
     }
 }
 
-const deleteFile = (req, res) => {
+const deleteFile = (req, res, next) => {
     const id = req.params
     try {
         const data = storageServices.deleteFile(id)

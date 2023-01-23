@@ -6,19 +6,21 @@ const fs = require("fs");
 const createFile = async(body) => {
 
     const data = await storageModel.create(body)
-    console.log(data)
 
     return data
 }
 
 const getFiles = async() => {
     const data = await storageModel.find()
+    console.log(data)
 
     return data
 }
 
 const getFile = async(id) => {
-    const data = await findById(id)
+    const data = await storageModel.findById(id)
+    console.log(data)
+
     return data
 }
 
