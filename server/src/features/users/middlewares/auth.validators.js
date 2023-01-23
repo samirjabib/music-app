@@ -39,7 +39,7 @@ const validateLogin = [
     }
 ];
 
-module.exports = [
+module.exports = {
     validateRegister,
     validateLogin
-]
+}

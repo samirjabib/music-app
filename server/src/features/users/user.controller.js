@@ -4,7 +4,9 @@ const { StatusCodes } = require("http-status-codes")
 const userServices = require("./user.services")
 
 
+const login = async(req, res, next) => {
 
+}
 
 const getUsers = async(req, res) => {
     
@@ -22,19 +24,10 @@ const createUser = async(req, res, next) => {
     }
 }
 
-const getUserById = async(req, res) => {
-    
-}
-
-const updateUser = async(req, res) => {
-    
-}
-
-const deleteUser = async(req, res) => {
-    
-}
 
 
 module.exports = {
-    createUser
+    createUser,
+    login,
+    getUsers,
 }
